@@ -27,7 +27,7 @@
         {
             <tr>
                 <th scope="row">@author.Id</th>
-                <td>@author.Name</td>
+                <td>@Html.ActionLink(author.Name,"Details",new { id = author.Id })</td>
                 <td>@author.Courses.Count()</td>
                 <td>@Html.ActionLink("Edit", "Edit", new { id = author.Id }) | @Html.ActionLink("Delete", "Delete", new { id = author.Id })</td>
                 

@@ -16,8 +16,8 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Courses</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col"></th>
+            
             
         </tr>
     </thead>
@@ -26,10 +26,9 @@
         {
             <tr>
                 <th scope="row">@student.Id</th>
-                <td>@student.Name</td>
+                <td>@Html.ActionLink(student.Name,"Details",new { id=student.Id})</td>
                 <td>@student.Courses.Count()</td>
-                <td>@Html.ActionLink("Edit","Edit",new { id=student.Id})</td>
-                <td>@Html.ActionLink("Delete","Delete", new { id = student.Id })</td>
+                <td>@Html.ActionLink("Edit","Edit",new { id=student.Id}) | @Html.ActionLink("Delete","Delete", new { id = student.Id })</td>
             </tr>
         }
 

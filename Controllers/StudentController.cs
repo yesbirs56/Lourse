@@ -21,7 +21,19 @@ namespace Lourse.Controllers
             }
             return View(students);
         }
-
+        public ActionResult Details(int id)
+        {
+            Student student;
+            using (LourseContext context = new LourseContext())
+            {
+                student = context.Students.Include(c => c.Courses).SingleOrDefault(c => c.Id == id);
+            }
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+            return View(student);
+        }
         public ActionResult Create()
         {
             return View("StudentForm", new Student());

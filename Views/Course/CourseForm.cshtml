@@ -1,0 +1,45 @@
+﻿@model Lourse.ViewModels.CourseAuthorViewModel
+@{
+    ViewBag.Title = "CourseForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>StudentForm</h2>
+
+@using (Html.BeginForm("Save", "Course"))
+{
+
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" value=@Model.Course.Title class="form-control" name="Course.Title" placeholder="Enter Title">
+    </div>
+    <div class="form-group">
+        <label for="Description">Desciption</label>
+        <textarea type="text" value=@Model.Course.Description class="form-control"rows="15" cols="30" name="Course.Description" placeholder="Enter Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input type="number" value=@Model.Course.Price class="form-control" name="Course.Price" placeholder="Enter Price">
+    </div>
+    @*<div class="form-group">
+        <label for="AuthorId">AuthorId</label>
+        <input type="number" value=@Model.Course.AuthorId class="form-control" name="AuthorId" placeholder="Enter AuthorId">
+    </div>*@
+    <div class="form-group">
+        <select class="form-control"  name="Course.AuthorId">
+            <option>Select Authors</option>
+            @foreach (var author in Model.Authors)
+            {
+                <option value=@author.Id> @author.Name</option>
+            }
+        </select>
+    </div>
+    //<input type="text" type="hidden" readonly class="form-control" name="Id" value=@Model.Id>
+    @Html.HiddenFor(c => c.Course.Id)
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+}
+
+
+

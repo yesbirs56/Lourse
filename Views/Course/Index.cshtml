@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Lourse.Models.Course>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Courses</h2>
+<div class="right ">
+
+    <button type="button" class="btn">@Html.ActionLink("Add Course", "Create", "Course")</button>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Ratings</th>
+            <th scope="col">Price</th>
+            <th scope="col">Author Of Course</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+        <tr>
+            <th scope="row">@course.Id</th>
+            <td>@Html.ActionLink( course.Title,"Details",new { id=course.Id})</td>
+            <td>@course.Rating</td>
+            <td>@course.Price</td>
+            <td>@course.Author.Name</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = course.Id }) | @Html.ActionLink("Delete", "Delete", new { id = course.Id })</td>
+            
+        </tr>
+        }
+
+
+    </tbody>
+</table>
+

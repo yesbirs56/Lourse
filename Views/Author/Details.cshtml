@@ -1,0 +1,32 @@
+﻿@model Lourse.Models.Author
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2> Author Details</h2>
+
+<h4>@Model.Name</h4>
+
+<h5>Number of Courses: @Model.Courses.Count()</h5>
+<div class="container">
+
+        @foreach (var course in Model.Courses)
+        {
+        <div class="card item" style="width: 20rem;">
+            <h5 class="card-header">@course.DatePublished.GetDateTimeFormats('D')[0]</h5>
+            <div class="card-body">
+                <h5 class="card-title">@course.Title</h5>
+                <p class="card-text">@course.Description</p>
+                @Html.ActionLink("View Course", "Details", "Course",
+               new { id = course.Id },
+               new { @class = "btn btn-primary", data_icon = "gear" })
+            </div>
+        </div>
+        <br/>
+        }
+
+</div>
+

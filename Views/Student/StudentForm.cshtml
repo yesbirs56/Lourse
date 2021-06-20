@@ -1,0 +1,26 @@
+﻿@model Lourse.Models.Student
+@{
+    ViewBag.Title = "StudentForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>StudentForm</h2>
+
+@using (Html.BeginForm("Save", "Student"))
+{
+    <input type="text" typeof="hidden" readonly class="form-control" name="Id" value=@Model.Id>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" value=@Model.Name class="form-control" name="Name" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" value=@Model.Username class="form-control" name="Username" placeholder="Enter Username">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+}
+
+
+

@@ -1,0 +1,16 @@
+﻿@model Lourse.Models.Course
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<h4>@Model.Title</h4>
+<h5> Rating: @Model.Rating</h5>
+<h5> Enrolled Students: @Model.Students.Count()</h5>
+<h5> Price :@Model.Price</h5>
+<br/>
+<p>@Model.Description</p>
+<br/>
+<h4>@Html.ActionLink(Model.Author.Name,"Details","Author",new { id=Model.AuthorId},null)</h4>

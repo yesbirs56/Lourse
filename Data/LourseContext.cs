@@ -25,5 +25,6 @@ namespace Lourse.Data
             modelBuilder.Configurations.Add(new StudentConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+        
     }
 }

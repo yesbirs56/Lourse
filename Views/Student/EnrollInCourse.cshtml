@@ -1,16 +1,11 @@
-﻿@model Lourse.Models.Student
+﻿@model Lourse.ViewModels.StudentCoursesViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "EnrollInCourse";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>EnrollInCourse</h2>
 
-
-<h2>Details</h2>
-
-<h4> Name: @Model.Name</h4>
-<h5> UserName: @Model.Username</h5>
-<h5> Total Course Taken : @Model.Courses.Count()</h5>
 <div class="container">
 
     @foreach (var course in Model.Courses)
@@ -20,8 +15,8 @@
             <div class="card-body">
                 <h5 class="card-title">@course.Title</h5>
                 <p class="card-text">@course.Description</p>
-                @Html.ActionLink("View Course", "Details", "Course",
-               new { id = course.Id },
+                @Html.ActionLink("Enroll", "ResgisterInCourse", "Student",
+               new { studentId = Model.Student.Id,courseId=course.Id },
                new { @class = "btn btn-primary", data_icon = "gear" })
             </div>
         </div>
@@ -29,5 +24,3 @@
     }
 
 </div>
-<br />
-<h4>@Html.ActionLink(" Select Courses to Enroll", "EnrollInCourse", "Student", new { id = Model.Id }, null)</h4>

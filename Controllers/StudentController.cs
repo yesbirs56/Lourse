@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Lourse.Models;
 using Lourse.Data;
 using System.Data.Entity;
+using Lourse.ViewModels;
 
 namespace Lourse.Controllers
 {
@@ -75,6 +76,42 @@ namespace Lourse.Controllers
             {
                 var oldStudent = context.Students.SingleOrDefault(s => s.Id == Id);
                 context.Students.Remove(oldStudent);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult EnrollInCourse(int id)
+        {
+            Student student;
+            IEnumerable<Course> courses;
+            using (LourseContext context = new LourseContext())
+            {
+                student = context.Students.Include(s => s.Courses).SingleOrDefault(s => s.Id == id);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+                IEnumerable< Course > studentCourses = student.Courses.AsEnumerable();
+                courses = context.Courses.AsEnumerable().Except(studentCourses).ToList();
+
+            }
+            StudentCoursesViewModel studentCoursesViewModel = new StudentCoursesViewModel()
+            {
+                Courses = courses,
+                Student = student
+            };
+            return View(studentCoursesViewModel);
+        }
+        [Route("Student/RegisterInCourse/{studentId:regex(//d+)}/{courseId:regex(//d+)}")]
+        public ActionResult ResgisterInCourse(int studentId, int courseId)
+        {
+            Course course;
+            Student student;
+            using(LourseContext context = new LourseContext())
+            {
+                course = context.Courses.FirstOrDefault(c => c.Id == courseId);
+                student = context.Students.Include(s=>s.Courses).FirstOrDefault(s => s.Id == studentId);
+                student.Courses.Add(course);
                 context.SaveChanges();
             }
             return RedirectToAction("Index");

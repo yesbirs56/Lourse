@@ -12,7 +12,7 @@ namespace Lourse.Data
     {
         public LourseContext() : base("name=Lourse")
         {
-
+            
         }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }

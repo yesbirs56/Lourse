@@ -13,7 +13,7 @@
     }
 }
 
-<h2>StudentForm</h2>
+<h2>CourseForm</h2>
 
 @using (Html.BeginForm("Save", "Course"))
 {
@@ -35,7 +35,7 @@
     {
         <div class="form-group">
             <select class="form-control" name="Course.AuthorId">
-                <option>Select Authors</option>
+                <option>Select Author</option>
                 @foreach (var author in Model.Authors)
                 {
                     <option value=@author.Id> @author.Name</option>
